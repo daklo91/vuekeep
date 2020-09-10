@@ -15,5 +15,8 @@ export default {
   },
   postLabel(label) {
     return apiClient.post('/labels', label)
+  },
+  deleteLabel(id) {
+    return apiClient.delete('/labels/' + id)
   }
 }

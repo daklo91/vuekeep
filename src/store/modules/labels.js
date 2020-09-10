@@ -11,6 +11,9 @@ const labels = {
     },
     ADD_LABEL(state, payload) {
       state.labels.push(payload)
+    },
+    DELETE_LABEL(state, index) {
+      state.labels.splice(index, 1)
     }
   },
   actions: {
@@ -22,9 +25,18 @@ const labels = {
         .catch(error => console.log(error))
     },
     postLabel({ commit }, payload) {
-      return AxiosLogic.postLabel(payload).then(() => {
-        commit('ADD_LABEL', payload)
-      })
+      return AxiosLogic.postLabel(payload)
+        .then(() => {
+          commit('ADD_LABEL', payload)
+        })
+        .catch(error => console.log(error))
+    },
+    deleteLabel({ commit }, payload) {
+      return AxiosLogic.deleteLabel(payload.id)
+        .then(() => {
+          commit('DELETE_LABEL', payload.index)
+        })
+        .catch(error => console.log(error))
     }
   }
 }
