@@ -1,25 +1,16 @@
 {
   "labels": [
     {
-      "title": "s",
-      "id": 645676
-    }
-  ],
-  "posts": [
+      "title": "Hi!",
+      "id": 5511850
+    },
     {
-      "id": 1,
-      "title": "json-server",
-      "author": "typicode"
-    }
-  ],
-  "comments": [
+      "title": "asdsad",
+      "id": 3387625
+    },
     {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
+      "title": "asd",
+      "id": 811630
     }
-  ],
-  "profile": {
-    "name": "typicode"
-  }
+  ]
 }

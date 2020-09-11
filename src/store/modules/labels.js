@@ -14,6 +14,11 @@ const labels = {
     },
     DELETE_LABEL(state, index) {
       state.labels.splice(index, 1)
+    },
+    RENAME_LABEL(state, payload) {
+      let newTitle = payload.newTitle
+      let index = payload.index
+      state.labels[index].title = newTitle
     }
   },
   actions: {
@@ -35,6 +40,14 @@ const labels = {
       return AxiosLogic.deleteLabel(payload.id)
         .then(() => {
           commit('DELETE_LABEL', payload.index)
+        })
+        .catch(error => console.log(error))
+    },
+    renameLabel({ commit }, payload) {
+      return AxiosLogic.patchLabel(payload.id, { title: payload.newTitle })
+        .then(res => {
+          console.log(res)
+          commit('RENAME_LABEL', payload)
         })
         .catch(error => console.log(error))
     }

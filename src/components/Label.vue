@@ -4,10 +4,11 @@
       <h1>{{ label.title }}</h1>
       <button v-on:click="deleteLabel(label.id, index)">
         DELETE
-        {{ label.id }}
       </button>
-      <input v-model="rename" @keyup.enter="renameLabel" />
-      <button @click.prevent="renameLabel">Y</button>
+      <input v-model="rename" @keyup.enter="renameLabel(label.id, index)" />
+      <button @click.prevent="renameLabel(label.id, index)">
+        EDIT
+      </button>
     </div>
     <input @keyup.enter="addLabel" v-model="input" placeholder="Add Label" />
     <button @click.prevent="addLabel">Add</button>
@@ -45,9 +46,10 @@ export default {
       this.$store.dispatch('labels/deleteLabel', payload)
     },
     renameLabel(id, index) {
-      let rename = this.rename //WIP we need to pass in the title or id for the backend?
-      let payload = { rename, index }
+      let newTitle = this.rename
+      let payload = { newTitle, id, index }
       this.$store.dispatch('labels/renameLabel', payload)
+      this.rename = ''
     }
   }
 }

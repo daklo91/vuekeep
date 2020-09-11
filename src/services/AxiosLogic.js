@@ -18,5 +18,8 @@ export default {
   },
   deleteLabel(id) {
     return apiClient.delete('/labels/' + id)
+  },
+  patchLabel(id, label) {
+    return apiClient.patch('/labels/' + id, label)
   }
 }
