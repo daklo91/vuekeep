@@ -5,8 +5,14 @@
       <button v-on:click="deleteLabel(label.id, index)">
         DELETE
       </button>
-      <input v-model="rename" @keyup.enter="renameLabel(label.id, index)" />
-      <button @click.prevent="renameLabel(label.id, index)">
+      <input
+        ref="input"
+        :value="label.title"
+        @keyup.enter="renameLabel($event.target.value, label.id, index)"
+      />
+      <button
+        @click.prevent="renameLabel($refs.input[index].value, label.id, index)"
+      >
         EDIT
       </button>
     </div>
@@ -45,8 +51,8 @@ export default {
       let payload = { id, index }
       this.$store.dispatch('labels/deleteLabel', payload)
     },
-    renameLabel(id, index) {
-      let newTitle = this.rename
+    renameLabel(e, id, index) {
+      let newTitle = e
       let payload = { newTitle, id, index }
       this.$store.dispatch('labels/renameLabel', payload)
       this.rename = ''

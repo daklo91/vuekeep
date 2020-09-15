@@ -45,8 +45,7 @@ const labels = {
     },
     renameLabel({ commit }, payload) {
       return AxiosLogic.patchLabel(payload.id, { title: payload.newTitle })
-        .then(res => {
-          console.log(res)
+        .then(() => {
           commit('RENAME_LABEL', payload)
         })
         .catch(error => console.log(error))
